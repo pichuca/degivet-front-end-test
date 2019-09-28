@@ -1,0 +1,25 @@
+{
+  "name": "degivet-front-end-test",
+  "version": "1.0.0",
+  "description": "server porpuse",
+  "main": "server.js",
+  "scripts": {
+    "test": "start-server",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pichuca/degivet-front-end-test.git"
+  },
+  "author": "pichuca",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pichuca/degivet-front-end-test/issues"
+  },
+  "homepage": "https://github.com/pichuca/degivet-front-end-test#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-favicon": "^2.0.1",
+    "path": "^0.12.7"
+  }
+}
