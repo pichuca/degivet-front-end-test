@@ -1,7 +1,7 @@
 {
   "name": "degivet-front-end-test",
   "version": "1.0.0",
-  "description": "server porpuse",
+  "description": "server porpuse json file",
   "main": "server.js",
   "scripts": {
     "test": "start-server",
