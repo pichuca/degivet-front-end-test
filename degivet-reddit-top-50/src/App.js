@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        Welcome to Reddit's top 50, YAY!
+        Degivet Reddit's top 50
       </header>
     </div>
   );
