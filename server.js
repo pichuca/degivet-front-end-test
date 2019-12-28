@@ -8,13 +8,15 @@ const path = require('path');
 const port = process.env.PORT || 5200;
 const app = express();
 
-app.use(favicon(__dirname + '/dist/angular-client/favicon.ico'));
+// TODO: add dist version directory url.
+
+app.use(favicon(__dirname + '/favicon.ico')); // TODO: set correct path
 // The __dirname is the current directory from where the script is running
 app.use(express.static(__dirname));
-app.use(express.static(path.join(__dirname, 'dist/angular-client')));
+app.use(express.static(path.join(__dirname, 'dist/'))); // TODO: set correct path
 
 app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'dist/angular-client', 'index.html'));
+  res.sendFile(path.join(__dirname, 'dist/', 'index.html')); // TODO: set correct path
 });
 
 // Listen.
