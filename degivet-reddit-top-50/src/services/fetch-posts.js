@@ -14,9 +14,6 @@ export default function fetchPosts() {
             })
             .catch((error) => {
                 dispatch(fetchPostsError(error));
-            })
-            .finally(() => {
-                console.log('Get Promise finalized.');
             });
     };
 }

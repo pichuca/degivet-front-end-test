@@ -12,37 +12,32 @@ import LoadingSpinner from './components/loading-spinner';
 
 class App extends React.Component {
     constructor(props) {
-        super(props);
-
-        // Bindings
-        this.shouldComponentRender = this.shouldComponentRender.bind(this);
+      super(props);
+      this.state = {
+        isFetching: true,
+      };
     }
-
+    
     componentDidMount() {
         const { fetchPosts } = this.props;
         fetchPosts();
-    }
-
-    shouldComponentRender() {
-        const { pending } = this.props;
-        if (!this.pending) {
-            return false;
-        }
-
-        return true;
+        this.setState({
+            isFetching: false,
+        });
     }
 
     render() {
-        const { posts, error, pending } = this.props;
-        if (!this.shouldComponentRender()) return <LoadingSpinner />;
+        const { error } = this.props;
         return (
             <div className="App">
                 <header className="App-header">
                     Degivet Reddit's top 50
                 </header>
+                {this.props.posts}
                 <div className="posts-list-wrapper">
+                    { this.state.isFetching ? <LoadingSpinner /> : null}
                     { error && <span className="error-message">{error}</span> }
-                    <PostsList posts={ posts } />
+                    <PostsList posts={ this.props.posts } />
                 </div>
             </div>
         );
