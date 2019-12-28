@@ -19,7 +19,7 @@ class Post extends React.Component {
         return (
             <div className="post" >
                 <div className="post__user-image">
-                    <img src={this.props.thumbnailURL} alt="user thumbnail photo" />
+                    <img src={this.props.thumbnailURL} alt="user thumbnail" />
                 </div>
                 <div className="post__readed-status">
                     {this.state.hasBeenRead ? 'post has been readed' : 'post has not been readed yet'}
