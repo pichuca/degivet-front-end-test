@@ -3,17 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-
+import configureStore from './configureStore';
 import { Provider } from 'react-redux';
-import { applyMiddleware, createStore, compose } from 'redux';
-import thunkMiddleware from 'redux-thunk';
-import rootReducer from './reducers';
-import loggerMiddleware from './middleware/logger';
 
-const middlewareEnhancer = applyMiddleware(loggerMiddleware, thunkMiddleware);
-const composedEnhancers = compose(middlewareEnhancer); // enhancers can be passed as comma separated params into compose() function.
-
-const store = createStore(rootReducer, undefined, composedEnhancers);
+const store = configureStore();
 
 
 
