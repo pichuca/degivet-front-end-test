@@ -9,10 +9,10 @@ const posts = (state = [], action) => {
                     completed: false
                 }
             ];
-        case 'DISMISS_TODO':
+        case 'TOGGLE_POST':
             return state.map(post =>
                 (post.id === action.id)
-                    ? {...post, completed: !post.completed}
+                    ? {...post, readed: !post.readed}
                     : post);
         default:
             return state;
