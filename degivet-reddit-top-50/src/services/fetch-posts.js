@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { fetchPostsPending, fetchPostsSuccess, fetchPostsError } from '../actions/actions';
 
-const postsDataURL = '/mock-data/top.json';
+// TODO: add path to Reddit API.
+const postsDataURL = '/mock-data/top.json'; // Axios needs absolute path to read the local file.
 
 export default function fetchPosts() {
     return dispatch => {
