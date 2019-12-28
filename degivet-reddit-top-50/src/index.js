@@ -11,7 +11,7 @@ const store = configureStore();
 
 
 
-const renderApp = ReactDOM.render(
+const renderApp = () => ReactDOM.render(
     <Provider store={store}>
         <App />
     </Provider>,
