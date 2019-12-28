@@ -5,16 +5,20 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import configureStore from './configureStore';
 import { Provider } from 'react-redux';
+import hotReloading from './utils/hotReloading';
 
 const store = configureStore();
 
 
 
-ReactDOM.render(
+const renderApp = ReactDOM.render(
     <Provider store={store}>
         <App />
     </Provider>,
     document.getElementById('root'));
+
+hotReloading('./components/App', renderApp);
+renderApp();
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
