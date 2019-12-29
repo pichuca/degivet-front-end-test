@@ -1,5 +1,6 @@
 .app {
   text-align: center;
+  font-family: Roboto;
 }
 
 .app-logo {
@@ -8,15 +9,19 @@
 
 .app-header {
   background-color: #282c34;
-  min-height: 10vh;
+  min-height: 20vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(16px + 2vmin);
   color: white;
 }
 
 .app-link {
   color: #09d3ac;
+}
+
+.title {
+  flex-grow: 1;
 }

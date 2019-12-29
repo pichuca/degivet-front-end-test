@@ -10,12 +10,15 @@ import './App.css';
 import PostsList from './components/posts-list/posts-list';
 import LoadingSpinner from './components/loading-spinner';
 
+import Container from '@material-ui/core/Container';
+import Button from '@material-ui/core/Button';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+
 class App extends React.Component {
     constructor(props) {
       super(props);
-      this.state = {
-        isFetching: true,
-      };
 
       this.dismissAllPosts = this.dismissAllPosts.bind(this);
     }
@@ -23,9 +26,6 @@ class App extends React.Component {
     componentDidMount() {
         const { fetchPosts } = this.props;
         fetchPosts();
-        this.setState({
-            isFetching: false,
-        });
     }
 
     dismissAllPosts() {
@@ -36,19 +36,28 @@ class App extends React.Component {
     render() {
         const { error, posts, pending } = this.props;
         return (
-            <div className="app">
-                <header className="app-header">
-                    Degivet Reddit's top 50
-                </header>
-                <div className="posts-list-wrapper">
-                    { this.state.isFetching ? <LoadingSpinner /> : null}
-                    { error && <span className="error-message">{error}</span> }
+            
+                <div className="app">
+                    <AppBar>
+                      <Toolbar>
+                        <Typography variant="h6" className={'title'}>
+                            Degivet Reddit's top 50
+                        </Typography>
+                      </Toolbar>
+                    </AppBar>
+                    <Container maxWidth={'xl'}>
+                        <div className="posts-list-wrapper">
+                            { pending ? <LoadingSpinner /> : null}
+                            { error && <span className="error-message">{error}</span> }
 
-                    {/* TODO: dismiss all */}
-                    <button onClick={this.dismissAllPosts}>Dismiss all posts</button>
-                    <PostsList posts={ this.props.posts } />
+                            {/* TODO: dismiss all */}
+                            <Button variant="contained" color="primary" onClick={this.dismissAllPosts}>
+                                Dismiss all posts
+                            </Button>
+                            <PostsList posts={ posts } />
+                        </div>
+                    </Container>
                 </div>
-            </div>
         );
     }
 }
