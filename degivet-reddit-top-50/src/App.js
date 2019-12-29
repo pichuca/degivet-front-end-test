@@ -29,8 +29,8 @@ class App extends React.Component {
     render() {
         const { error, posts, pending } = this.props;
         return (
-            <div className="App">
-                <header className="App-header">
+            <div className="app">
+                <header className="app-header">
                     Degivet Reddit's top 50
                 </header>
                 <div className="posts-list-wrapper">
