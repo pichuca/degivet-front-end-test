@@ -27,13 +27,12 @@ class App extends React.Component {
     }
 
     render() {
-        const { error } = this.props;
+        const { error, posts, pending } = this.props;
         return (
             <div className="App">
                 <header className="App-header">
                     Degivet Reddit's top 50
                 </header>
-                {this.props.posts}
                 <div className="posts-list-wrapper">
                     { this.state.isFetching ? <LoadingSpinner /> : null}
                     { error && <span className="error-message">{error}</span> }

@@ -18,7 +18,7 @@ export default function postsReducers(state = initialState, action) {
             return {
                 ...state,
                 pending: false,
-                posts: action.payload,
+                posts: action.posts,
             };
         case FETCH_POSTS_ERROR:
             return {
@@ -32,6 +32,6 @@ export default function postsReducers(state = initialState, action) {
 }
 
 // Selectors.
-export const getPosts = state => state.posts;
-export const getPostsPending = state => state.pending;
-export const getPostsError = state => state.error;
+export const getPosts = state => state.postsReducers.posts;
+export const getPostsPending = state => state.postsReducers.pending;
+export const getPostsError = state => state.postsReducers.error;

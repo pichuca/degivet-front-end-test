@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 
 class Post extends React.Component {
     constructor(props) {
@@ -11,26 +12,33 @@ class Post extends React.Component {
     }
 
     handleClickToDisplayPost(event) {
-        // TODO: this implementation correctly.
-        this.setState({ hasBeenRead: !event.target.hasBeenRead });
+        console.log('Clicked on post id: ' + event.currentTarget.id);
+        // TODO:
     }
 
     render() {
+        const getUTCEntryDate = () => {
+            let createdUTC = this.props.data.created_utc;
+            return moment.unix(createdUTC).fromNow();
+        };
         return (
-            <div className="post" >
+            <div id={this.props.data.id} className="post" onClick={this.handleClickToDisplayPost}>
                 <div className="post__user-image">
-                    <img src={this.props.thumbnailURL} alt="user thumbnail" />
+                    <img src={this.props.data.thumbnail} alt="user thumbnail" />
                 </div>
                 <div className="post__readed-status">
-                    {this.state.hasBeenRead ? 'post has been readed' : 'post has not been readed yet'}
+                    {/* TODO: add icon for UX enhancement */}
+                    {this.props.data.visited ? 'READED' : 'NOT READED YET'}
                 </div>
-                <h2>{this.props.title}</h2>
-                <h3>{this.props.author}</h3>
+                <h2>{this.props.data.title}</h2>
+                <h3>Author: {this.props.data.author}</h3>
                 <div className="post__entry-date">
-                    <span>{this.props.entryDate}</span>
+                    <span><b>Entry date: </b></span>
+                    <span>{getUTCEntryDate(this.props.entryDate)}</span>
                 </div>
                 <div className="post__comments-amount">
-                    <span>{this.props.commentsAmount}</span>
+                    <span>Number of comments: </span>
+                    <span>{this.props.data.num_comments}</span>
                 </div>
             </div>
         );
