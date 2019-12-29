@@ -16,6 +16,8 @@ class App extends React.Component {
       this.state = {
         isFetching: true,
       };
+
+      this.dismissAllPosts = this.dismissAllPosts.bind(this);
     }
     
     componentDidMount() {
@@ -24,6 +26,11 @@ class App extends React.Component {
         this.setState({
             isFetching: false,
         });
+    }
+
+    dismissAllPosts() {
+        console.log('Dismiss all button clicked.');
+        // TODO:
     }
 
     render() {
@@ -36,6 +43,9 @@ class App extends React.Component {
                 <div className="posts-list-wrapper">
                     { this.state.isFetching ? <LoadingSpinner /> : null}
                     { error && <span className="error-message">{error}</span> }
+
+                    {/* TODO: dismiss all */}
+                    <button onClick={this.dismissAllPosts}>Dismiss all posts</button>
                     <PostsList posts={ this.props.posts } />
                 </div>
             </div>

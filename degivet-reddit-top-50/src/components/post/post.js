@@ -13,7 +13,7 @@ class Post extends React.Component {
 
     handleClickToDisplayPost(event) {
         console.log('Clicked on post id: ' + event.currentTarget.id);
-        // TODO:
+        // TODO: UI, update store/state on action.
     }
 
     render() {
