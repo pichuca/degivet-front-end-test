@@ -8,6 +8,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
 import CheckCircleOutlinedIcon from '@material-ui/icons/CheckCircleOutlined';
+import MarkunreadMailboxIcon from '@material-ui/icons/MarkunreadMailbox';
 
 import './post.css';
 
@@ -42,9 +43,6 @@ class Post extends React.Component {
                     <ListItemAvatar>
                         <Avatar alt="user thumbnail" src={this.props.data.thumbnail} />
                     </ListItemAvatar>
-                    <div className="dismiss-button">
-                        <CancelOutlinedIcon onClick={this.dismissPost} />
-                    </div>
                     <ListItemText>
                         <h3>{this.props.data.author}</h3>
                         <h2>
@@ -60,9 +58,12 @@ class Post extends React.Component {
                         </div>
                         <div className="post__readed-status">
                             {/* TODO: add icon for UX enhancement */}
-                            {this.props.data.visited ? <CheckCircleOutlinedIcon /> : 'Unreaded.' }
+                            {this.props.data.visited ? <CheckCircleOutlinedIcon /> : <MarkunreadMailboxIcon /> }
                         </div>
                     </ListItemText>
+                    <div className="dismiss-button" title="dismiss post">
+                        <CancelOutlinedIcon onClick={this.dismissPost} />
+                    </div>
                 </ListItem>
                 <Divider variant="middle" />
             </React.Fragment>

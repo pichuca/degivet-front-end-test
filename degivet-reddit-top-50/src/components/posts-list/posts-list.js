@@ -5,7 +5,6 @@ import Post from '../post/post';
 import './post-list.css';
 
 import List from '@material-ui/core/List';
-import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 
 

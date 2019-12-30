@@ -1,3 +1,13 @@
 .dismiss-button {
     cursor: pointer;
+    margin-top: 10px;
+    margin-left: 8px;
+}
+
+h3 {
+    margin-top: 10px;
+}
+
+.post__readed-status {
+    margin-top: 10px;
 }
