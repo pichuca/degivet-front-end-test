@@ -40,10 +40,15 @@ class PostsList extends React.Component  {
             offset: offset,
         }, () => this.setElementsForCurrentPage());
     }
+    handleSinlgePostChange(event, postId) { // TODO: handle update single post from collection to use current collection to update state.
+        console.log('Handling single post click from parent!');
+        console.log('Post ID from parent: ', postId);
+        // TODO: trigger updateSinglePost(postId, posts) from service
+    }
     render() {
         const postItems = this.state.elements;
         const postsElements = postItems ? postItems.map((postData) => {
-            return <Post data={postData.data} key={postData.data.id}/>;
+            return <Post data={postData.data} key={postData.data.id} getPostClickEvent={this.handleSinlgePostChange} />;
         }) : null;
         const breakLabel = <span className="gap">...</span>;
         let paginationElement;

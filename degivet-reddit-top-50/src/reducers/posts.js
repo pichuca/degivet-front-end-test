@@ -50,6 +50,12 @@ export default function postsReducers(state = initialState, action) {
                 ...state,
                 error: action.error
             };
+        case UPDATE_SINGLE_POST_READED_STATUS_SUCCESS:
+            
+            return {
+                ...state,
+                pending: false,
+            };
         default:
             return state;
     }

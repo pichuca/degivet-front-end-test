@@ -24,8 +24,9 @@ class Post extends React.Component {
     }
 
     handleClickToDisplayPost(event) {
-        console.log('Clicked on post id: ' + event.currentTarget.id);
-        // TODO: UI, update store/state on action.
+        const postId = event.currentTarget.id;
+        // Pass event to parent to handle collection/state changes.
+        this.props.getPostClickEvent(event, postId);
     }
 
     dismissPost() {

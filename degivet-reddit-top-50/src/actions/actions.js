@@ -47,10 +47,10 @@ export function updateSinglePostReadedStatusPending() {
     };
 }
 
-export function updateSinglePostReadedStatusSuccess(post) {
+export function updateSinglePostReadedStatusSuccess(posts) {
     return {
         type: UPDATE_SINGLE_POST_READED_STATUS_PENDING,
-        post: post,
+        posts: posts,
     };
 }
 
