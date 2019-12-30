@@ -22,14 +22,14 @@ class PostsList extends React.Component  {
         this.handlePageClick = this.handlePageClick.bind(this);
     }
     componentDidMount() {
-        let elementsLength = this.state.data.length;
-        let perPage = this.state.perPage;
+        const elementsLength = this.state.data.length;
+        const perPage = this.state.perPage;
         this.setState({
             pageCount: Math.ceil(elementsLength / perPage),
         }, () => this.setElementsForCurrentPage());
     }
     setElementsForCurrentPage() {
-        let elements = this.state.data.slice(this.state.offset, this.state.offset + this.state.perPage);
+        const elements = this.state.data.slice(this.state.offset, this.state.offset + this.state.perPage);
         this.setState({elements: elements});
     }
     handlePageClick(data) {
