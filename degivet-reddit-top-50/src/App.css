@@ -14,3 +14,8 @@
 .title {
   flex-grow: 1;
 }
+
+.dismiss-all {
+  cursor: pointer;
+  margin-top: 100px;
+}

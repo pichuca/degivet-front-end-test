@@ -5,6 +5,8 @@ import Post from '../post/post';
 import './post-list.css';
 
 import List from '@material-ui/core/List';
+import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
 
 
 class PostsList extends React.Component  {
@@ -48,8 +50,8 @@ class PostsList extends React.Component  {
         let paginationElement;
         if (this.state.pageCount > 1) {
             paginationElement = <ReactPaginate
-                previousLabel={'← Previous'}
-                nextLabel={'Next →'}
+                previousLabel={'←'}
+                nextLabel={'→'}
                 breakLabel={breakLabel}
                 pageCount={this.state.pageCount}
                 onPageChange={this.handlePageClick}
@@ -62,11 +64,18 @@ class PostsList extends React.Component  {
             />
         }
         return (
-            <List>
-                {paginationElement}
-                {postsElements}
-                {paginationElement}
-            </List>
+            <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
+                <List>
+                    {paginationElement}
+                    {postsElements}
+                    {paginationElement}
+                </List>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    DETAILS POSTS
+                </Grid>
+            </Grid>
         );
     }
 }

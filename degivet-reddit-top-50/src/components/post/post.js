@@ -9,6 +9,8 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
 import CheckCircleOutlinedIcon from '@material-ui/icons/CheckCircleOutlined';
 
+import './post.css';
+
 class Post extends React.Component {
     constructor(props) {
         super(props);
@@ -40,7 +42,9 @@ class Post extends React.Component {
                     <ListItemAvatar>
                         <Avatar alt="user thumbnail" src={this.props.data.thumbnail} />
                     </ListItemAvatar>
-                    <CancelOutlinedIcon onClick={this.dismissPost} />
+                    <div className="dismiss-button">
+                        <CancelOutlinedIcon onClick={this.dismissPost} />
+                    </div>
                     <ListItemText>
                         <h3>{this.props.data.author}</h3>
                         <h2>

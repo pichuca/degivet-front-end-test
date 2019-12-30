@@ -50,10 +50,11 @@ class App extends React.Component {
                             { pending ? <LoadingSpinner /> : null}
                             { error && <span className="error-message">{error}</span> }
 
-                            {/* TODO: dismiss all */}
-                            <Button variant="contained" color="primary" onClick={this.dismissAllPosts}>
-                                Dismiss all posts
-                            </Button>
+                            <div className="dismiss-all">
+                                <Button variant="contained" color="primary" onClick={this.dismissAllPosts}>
+                                    Dismiss all posts
+                                </Button>
+                            </div>
                             {posts.length > 1 ? <PostsList posts={ posts } /> : null}
                         </div>
                     </Container>
