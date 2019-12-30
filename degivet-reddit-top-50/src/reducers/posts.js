@@ -1,4 +1,13 @@
-import { FETCH_POSTS_PENDING, FETCH_POSTS_SUCCESS, FETCH_POSTS_ERROR } from '../actions/actions';
+import { 
+    FETCH_POSTS_PENDING,
+    FETCH_POSTS_SUCCESS,
+    FETCH_POSTS_ERROR,
+    UPDATE_SINGLE_POST_READED_STATUS_PENDING,
+    UPDATE_SINGLE_POST_READED_STATUS_SUCCESS,
+    UPDATE_SINGLE_POST_READED_STATUS_ERROR,
+    DISMISS_ALL_POSTS_PENDING,
+    DISMISS_ALL_POSTS_SUCCESS,
+    DISMISS_ALL_POSTS_ERROR } from '../actions/actions';
 
 const initialState = {
     pending: false,
@@ -25,6 +34,21 @@ export default function postsReducers(state = initialState, action) {
                 ...state,
                 pending: false,
                 error: action.error,
+            };
+        case DISMISS_ALL_POSTS_PENDING:
+            return {
+                ...state,
+                pending: true,
+            };
+        case DISMISS_ALL_POSTS_SUCCESS:
+            return {
+                ...initialState, // pass initial state with empty items array.
+                pending: false,
+            };
+        case DISMISS_ALL_POSTS_ERROR:
+            return {
+                ...state,
+                error: action.error
             };
         default:
             return state;

@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import fetchPostsAction from './services/fetch-posts';
+import dismissAllPostsAction from './services/dismiss-all-posts';
+
 import { getPosts, getPostsPending, getPostsError } from './reducers/posts';
 
 import './App.css';
@@ -19,8 +21,12 @@ import Typography from '@material-ui/core/Typography';
 class App extends React.Component {
     constructor(props) {
       super(props);
+      this.state = {
+          areAllPostsDismissed: false,
+      };
 
-      this.dismissAllPosts = this.dismissAllPosts.bind(this);
+      this.dismissAllPostsHandler = this.dismissAllPostsHandler.bind(this);
+      this.handleRefreshPage = this.handleRefreshPage.bind(this);
     }
     
     componentDidMount() {
@@ -28,15 +34,34 @@ class App extends React.Component {
         fetchPosts();
     }
 
-    dismissAllPosts() {
-        console.log('Dismiss all button clicked.');
-        // TODO:
+    dismissAllPostsHandler() {
+        const { dismissAllPosts } = this.props;
+        dismissAllPosts();
+        // Set new state property.
+        this.setState({
+            areAllPostsDismissed: true,
+        });
+    }
+    handleRefreshPage() {
+        window.location.reload();
     }
 
     render() {
         const { error, posts, pending } = this.props;
+        const dismissAllPostsButton = <div className="dismiss-all">
+             <Button variant="contained" color="primary" onClick={this.dismissAllPostsHandler}>
+                Dismiss all posts
+            </Button>
+        </div>;
+        const emptyPageMessage = <div className={'empty-page'}>
+            <h3>No posts to show here.</h3>
+            <p>
+                Please, refresh your browser or click <span className={'refresh-link'} onClick={this.handleRefreshPage}>here</span>.
+                <br />
+                Thank you!
+            </p>
+        </div>;
         return (
-            
                 <div className="app">
                     <AppBar>
                       <Toolbar>
@@ -47,15 +72,11 @@ class App extends React.Component {
                     </AppBar>
                     <Container maxWidth={'xl'}>
                         <div className="posts-list-wrapper">
-                            { pending ? <LoadingSpinner /> : null}
+                            { pending ? <LoadingSpinner /> : null }
                             { error && <span className="error-message">{error}</span> }
 
-                            <div className="dismiss-all">
-                                <Button variant="contained" color="primary" onClick={this.dismissAllPosts}>
-                                    Dismiss all posts
-                                </Button>
-                            </div>
-                            {posts.length > 1 ? <PostsList posts={ posts } /> : null}
+                            { !this.state.areAllPostsDismissed ? dismissAllPostsButton : emptyPageMessage }
+                            { posts.length > 1 ? <PostsList posts={ posts } /> : null }
                         </div>
                     </Container>
                 </div>
@@ -70,7 +91,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  fetchPosts: fetchPostsAction
+  fetchPosts: fetchPostsAction,
+  dismissAllPosts: dismissAllPostsAction,
 }, dispatch);
 
 

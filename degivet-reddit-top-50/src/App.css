@@ -20,3 +20,14 @@
   margin-top: 100px;
   margin-bottom: 50px;
 }
+
+.empty-page {
+  margin-top: 84px;
+}
+
+.refresh-link {
+  font-weight: bold;
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
