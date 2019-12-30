@@ -54,7 +54,8 @@ class App extends React.Component {
                             <Button variant="contained" color="primary" onClick={this.dismissAllPosts}>
                                 Dismiss all posts
                             </Button>
-                            <PostsList posts={ posts } />
+                            { posts.length > 0 ? <PostsList posts={posts}/> : null }
+                            {/* <PostsList posts={ posts } /> */}
                         </div>
                     </Container>
                 </div>
