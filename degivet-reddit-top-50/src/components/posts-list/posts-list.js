@@ -2,7 +2,10 @@ import React from 'react';
 import ReactPaginate from 'react-paginate';
 import Post from '../post/post';
 
+import './post-list.css';
+
 import List from '@material-ui/core/List';
+
 
 class PostsList extends React.Component  {
     constructor(props) {
@@ -18,7 +21,7 @@ class PostsList extends React.Component  {
         this.handlePageClick = this.handlePageClick.bind(this);
     }
     componentDidMount() {
-        let elementsLength = this.state.elements.length;
+        let elementsLength = this.state.data.length;
         let perPage = this.state.perPage;
         this.setState({
             pageCount: Math.ceil(elementsLength / perPage),
@@ -44,7 +47,7 @@ class PostsList extends React.Component  {
         const breakLabel = <span className="gap">...</span>;
         let paginationElement;
         if (this.state.pageCount > 1) {
-            paginationElement =<ReactPaginate
+            paginationElement = <ReactPaginate
                 previousLabel={'← Previous'}
                 nextLabel={'Next →'}
                 breakLabel={breakLabel}
@@ -59,7 +62,7 @@ class PostsList extends React.Component  {
             />
         }
         return (
-            <List className={'list'}>
+            <List>
                 {paginationElement}
                 {postsElements}
                 {paginationElement}
