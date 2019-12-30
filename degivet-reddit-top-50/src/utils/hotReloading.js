@@ -4,7 +4,7 @@
  * @hotReloading
  * @param {*} path 
  * @param {*} component
- * Enables hot realoding for development environment. 
+ * Enables hot reloading for development environment. 
  */
 export default function hotReloading(path, component) {
     if (process.env.NODE_ENV !== 'production' && module.hot) {
