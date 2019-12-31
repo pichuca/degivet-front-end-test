@@ -21,6 +21,13 @@ export const UPDATE_SINGLE_POST_READED_STATUS_ERROR = 'UPDATE_SINGLE_POST_READED
  export const DISMISS_ALL_POSTS_SUCCESS = 'DISMISS_ALL_POSTS_SUCCESS';
  export const DISMISS_ALL_POSTS_ERROR = 'DISMISS_ALL_POSTS_ERROR';
 
+ /**
+  * Dismiss single post.
+  */
+ export const DISMISS_SINGLE_POST_PENDING = 'DISMISS_SINGLE_POST_PENDING';
+ export const DISMISS_SINGLE_POST_SUCCESS = 'DISMISS_SINGLE_POST_SUCCESS';
+ export const DISMISS_SINGLE_POST_ERROR = 'DISMISS_SINGLE_POST_ERROR'; 
+
 export function fetchPostsPending() {
     return {
         type: FETCH_POSTS_PENDING
@@ -49,7 +56,7 @@ export function updateSinglePostReadedStatusPending() {
 
 export function updateSinglePostReadedStatusSuccess(posts) {
     return {
-        type: UPDATE_SINGLE_POST_READED_STATUS_PENDING,
+        type: UPDATE_SINGLE_POST_READED_STATUS_SUCCESS,
         posts: posts,
     };
 }
@@ -78,6 +85,28 @@ export function dismissAllPostsSuccess() {
 export function dismissAllPostsError(error) {
     return {
         type: DISMISS_ALL_POSTS_ERROR,
+        error: error,
+    };
+}
+
+export function dismissSinglePostPending() {
+    return {
+        type: DISMISS_SINGLE_POST_PENDING,
+        pending: true,
+    };
+}
+
+export function dismissSinglePostSuccess(posts) {
+    return {
+        type: DISMISS_SINGLE_POST_SUCCESS,
+        posts: posts,
+        pending: false,
+    };
+}
+
+export function dismissSinglePostError(error) {
+    return {
+        type: DISMISS_SINGLE_POST_ERROR,
         error: error,
     };
 }

@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import ReactPaginate from 'react-paginate';
 import Post from '../post/post';
 
@@ -6,6 +8,11 @@ import './post-list.css';
 
 import List from '@material-ui/core/List';
 import Grid from '@material-ui/core/Grid';
+
+import updateSinglePostAction from '../../services/update-single-posts';
+import dismissSinglePostAction from '../../services/dismiss-single-post';
+
+import { getPosts, getPostsPending, getPostsError } from '../../reducers/posts';
 
 
 class PostsList extends React.Component  {
@@ -20,6 +27,7 @@ class PostsList extends React.Component  {
         };
         this.setElementsForCurrentPage = this.setElementsForCurrentPage.bind(this);
         this.handlePageClick = this.handlePageClick.bind(this);
+        this.handleSinglePostDismiss = this.handleSinglePostDismiss.bind(this);
     }
     componentDidMount() {
         const elementsLength = this.state.data.length;
@@ -29,8 +37,13 @@ class PostsList extends React.Component  {
         }, () => this.setElementsForCurrentPage());
     }
     setElementsForCurrentPage() {
+        const elementsLength = this.state.data.length;
+        const perPage = this.state.perPage;
         const elements = this.state.data.slice(this.state.offset, this.state.offset + this.state.perPage);
-        this.setState({elements: elements});
+        this.setState({
+            pageCount: Math.ceil(elementsLength / perPage),
+            elements: elements
+        });
     }
     handlePageClick(data) {
         const selectedPage = data.selected;
@@ -40,15 +53,20 @@ class PostsList extends React.Component  {
             offset: offset,
         }, () => this.setElementsForCurrentPage());
     }
-    handleSinlgePostChange(event, postId) { // TODO: handle update single post from collection to use current collection to update state.
-        console.log('Handling single post click from parent!');
-        console.log('Post ID from parent: ', postId);
-        // TODO: trigger updateSinglePost(postId, posts) from service
+    handleSinglePostDismiss(postId) {
+        const copydCollection = [...this.state.data].filter((post) => {
+            return post.data.id !== postId;
+        });
+        
+        this.setState({
+            elements: copydCollection,
+            data: copydCollection,
+        }, () => this.setElementsForCurrentPage());
     }
     render() {
         const postItems = this.state.elements;
         const postsElements = postItems ? postItems.map((postData) => {
-            return <Post data={postData.data} key={postData.data.id} getPostClickEvent={this.handleSinlgePostChange} />;
+            return <Post data={postData.data} key={postData.data.id} getPostClickEvent={this.handleSinglePostDismiss} />;
         }) : null;
         const breakLabel = <span className="gap">...</span>;
         let paginationElement;
@@ -84,6 +102,20 @@ class PostsList extends React.Component  {
     }
 }
 
-export default PostsList;
+const mapStateToProps = state => ({
+    error: getPostsError(state),
+    posts: getPosts(state),
+    pending: getPostsPending(state),
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+    updateSinglePost: updateSinglePostAction,
+    dismissSinglePost: dismissSinglePostAction,
+  }, dispatch);
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(PostsList);
 
 

@@ -16,7 +16,7 @@ class Post extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            hasBeenRead: false,
+            hasBeenReaded: false,
         };
         // handlers.
         this.handleClickToDisplayPost = this.handleClickToDisplayPost.bind(this);
@@ -24,13 +24,13 @@ class Post extends React.Component {
     }
 
     handleClickToDisplayPost(event) {
-        const postId = event.currentTarget.id;
-        // Pass event to parent to handle collection/state changes.
-        this.props.getPostClickEvent(event, postId);
+        this.setState({
+            hasBeenReaded: true,
+        });
     }
 
     dismissPost() {
-        console.log('Click on dismiss post button.');
+        this.props.getPostClickEvent(this.props.data.id);
     }
 
     render() {
@@ -59,7 +59,7 @@ class Post extends React.Component {
                         </div>
                         <div className="post__readed-status">
                             {/* TODO: add icon for UX enhancement */}
-                            {this.props.data.visited ? <CheckCircleOutlinedIcon /> : <MarkunreadMailboxIcon /> }
+                            {this.state.hasBeenReaded ? <CheckCircleOutlinedIcon /> : <MarkunreadMailboxIcon /> }
                         </div>
                     </ListItemText>
                     <div className="dismiss-button" title="dismiss post">
