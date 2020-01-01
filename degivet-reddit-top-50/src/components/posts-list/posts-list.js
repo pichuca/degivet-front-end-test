@@ -7,6 +7,8 @@ import {
     useLocation
 } from "react-router-dom";
 
+import { CSSTransitionGroup } from 'react-transition-group';
+
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ReactPaginate from 'react-paginate';
@@ -94,8 +96,13 @@ class PostsList extends React.Component  {
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={6}>
                     {paginationElement}
-                    <List className={'my-list'}>
-                        {postsElements}
+                    <List className={'posts-list'}>
+                        <CSSTransitionGroup
+                            transitionName="fade-out-dismiss"
+                            transitionEnterTimeout={500}
+                            transitionLeaveTimeout={300}>
+                            {postsElements}
+                        </CSSTransitionGroup>
                     </List>
                     </Grid>
                     <Grid item xs={12} sm={6}>

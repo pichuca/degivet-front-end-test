@@ -37,7 +37,28 @@
     outline: 0;
 }
 
-.my-list {
+.posts-list {
     height: 500px;
     overflow-y: scroll;
 }
+
+/* 
+ ANIMATIONS
+ */
+ .fade-out-dismiss-enter {
+    opacity: 0.01;
+  }
+  
+  .fade-out-dismiss-enter.example-enter-active {
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+  }
+  
+  .fade-out-dismiss-leave {
+    opacity: 1;
+  }
+  
+  .fade-out-dismiss-leave.example-leave-active {
+    opacity: 0.01;
+    transition: opacity 300ms ease-in;
+  }
