@@ -30,11 +30,7 @@ class PostsList extends React.Component  {
         this.handleSinglePostDismiss = this.handleSinglePostDismiss.bind(this);
     }
     componentDidMount() {
-        const elementsLength = this.state.data.length;
-        const perPage = this.state.perPage;
-        this.setState({
-            pageCount: Math.ceil(elementsLength / perPage),
-        }, () => this.setElementsForCurrentPage());
+        this.setElementsForCurrentPage()
     }
     setElementsForCurrentPage() {
         const elementsLength = this.state.data.length;
