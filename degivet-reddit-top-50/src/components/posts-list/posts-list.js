@@ -38,7 +38,7 @@ class PostsList extends React.Component  {
         const elements = this.state.data.slice(this.state.offset, this.state.offset + this.state.perPage);
         this.setState({
             pageCount: Math.ceil(elementsLength / perPage),
-            elements: elements
+            elements: elements,
         });
     }
     handlePageClick(data) {
