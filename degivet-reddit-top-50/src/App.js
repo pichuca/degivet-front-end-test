@@ -75,7 +75,8 @@ class App extends React.Component {
                             { pending ? <LoadingSpinner /> : null }
                             { error && <span className="error-message">{error}</span> }
 
-                            { !this.state.areAllPostsDismissed ? dismissAllPostsButton : emptyPageMessage }
+                            { !this.state.areAllPostsDismissed && !pending ? dismissAllPostsButton : null }
+                            { this.state.areAllPostsDismissed ? emptyPageMessage : null }
                             { posts.length > 1 ? <PostsList posts={ posts } /> : null }
                         </div>
                     </Container>
