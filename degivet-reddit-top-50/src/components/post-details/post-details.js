@@ -26,6 +26,12 @@ const useStyles = makeStyles({
 export default function PostDetails(props) {
   const classes = useStyles();
 
+  function handleClick(e) {
+      e.preventDefault();
+      window.open(props.url, '_blank');
+      window.focus();
+  }
+
   return (
     <Card className={classes.card}>
       <CardContent>
@@ -66,7 +72,7 @@ export default function PostDetails(props) {
         
       </CardContent>
       <CardActions>
-        <Button size="small">Go to subreddit</Button>
+        <Button size="small" onClick={handleClick}>Go to post</Button>
       </CardActions>
     </Card>
   );
