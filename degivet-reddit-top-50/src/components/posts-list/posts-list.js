@@ -1,8 +1,17 @@
 import React from 'react';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    useParams,
+    useLocation
+} from "react-router-dom";
+
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ReactPaginate from 'react-paginate';
 import Post from '../post/post';
+import PostDeatils from '../post-details/post-details';
 
 import './post-list.css';
 
@@ -13,7 +22,6 @@ import updateSinglePostAction from '../../services/update-single-posts';
 import dismissSinglePostAction from '../../services/dismiss-single-post';
 
 import { getPosts, getPostsPending, getPostsError } from '../../reducers/posts';
-
 
 class PostsList extends React.Component  {
     constructor(props) {
@@ -82,21 +90,44 @@ class PostsList extends React.Component  {
             />
         }
         return (
-            <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
-                <List>
+            <Router>
+                <Grid container spacing={2}>
+                    <Grid item xs={12} sm={6}>
                     {paginationElement}
-                    {postsElements}
-                    {paginationElement}
-                </List>
+                    <List className={'my-list'}>
+                        {postsElements}
+                    </List>
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                        <Switch>
+                            <Route path="/:id" children={ <PostDetail /> } />
+                        </Switch>
+                    </Grid>
                 </Grid>
-                <Grid item xs={12} sm={6}>
-                    DETAILS POSTS
-                </Grid>
-            </Grid>
+            </Router>
         );
     }
 }
+
+function PostDetail() {
+    const location = useLocation();
+    const { thumbnail, author, subreddit_id, url, title } = location.state;
+    let { id } = useParams();
+    const detailsData = {
+        thumbnail,
+        author,
+        subreddit_id,
+        url,
+        id,
+        title,
+    };
+  
+    return (
+        <React.Fragment>
+            <PostDeatils {...detailsData} />
+        </React.Fragment>
+    );
+  }
 
 const mapStateToProps = state => ({
     error: getPostsError(state),

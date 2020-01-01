@@ -1,6 +1,10 @@
 import React from 'react';
 import moment from 'moment';
 
+import {
+    Link
+} from "react-router-dom";
+
 import Avatar from '@material-ui/core/Avatar';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
@@ -47,7 +51,18 @@ class Post extends React.Component {
                     <ListItemText>
                         <h3>{this.props.data.author}</h3>
                         <h2>
-                            {this.props.data.title}
+                            <Link to={{ 
+                                pathname: '/' + this.props.data.id,
+                                state: { 
+                                    thumbnail: this.props.data.thumbnail, 
+                                    author: this.props.data.author,
+                                    subreddit_id: this.props.data.subreddit_id,
+                                    url: this.props.data.url ,
+                                    title: this.props.data.title,
+                                }
+                            }}>
+                                {this.props.data.title}
+                            </Link>
                         </h2>
                         <div className="post__entry-date">
                             <span><b>Entry date: </b></span>

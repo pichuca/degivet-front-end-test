@@ -43,6 +43,7 @@ class App extends React.Component {
         });
     }
     handleRefreshPage() {
+        window.location.replace('/');
         window.location.reload();
     }
 

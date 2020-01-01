@@ -1,5 +1,5 @@
 .pagination {
-    margin: 60px auto 40px;
+    margin: 0 auto 40px;
     list-style-type: none;
     display: flex;
     padding: 0;
@@ -35,4 +35,9 @@
 .pagination li:focus,
 .pagination a:focus {
     outline: 0;
+}
+
+.my-list {
+    height: 500px;
+    overflow-y: scroll;
 }
