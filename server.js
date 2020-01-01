@@ -10,13 +10,13 @@ const app = express();
 
 // TODO: add dist version directory url.
 
-app.use(favicon(__dirname + '/favicon.ico')); // TODO: set correct path
+app.use(favicon(__dirname + '/degivet-reddit-top-50/build/favicon.ico'));
 // The __dirname is the current directory from where the script is running
 app.use(express.static(__dirname));
-app.use(express.static(path.join(__dirname, 'dist/'))); // TODO: set correct path
+app.use(express.static(path.join(__dirname, '/degivet-reddit-top-50/build')));
 
 app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'dist/', 'index.html')); // TODO: set correct path
+  res.sendFile(path.join(__dirname, '/degivet-reddit-top-50/build', '/degivet-reddit-top-50/index.html'));
 });
 
 // Listen.
