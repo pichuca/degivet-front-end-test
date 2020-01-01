@@ -16,7 +16,7 @@ app.use(express.static(__dirname));
 app.use(express.static(path.join(__dirname, '/degivet-reddit-top-50/build')));
 
 app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, '/degivet-reddit-top-50/build', '/degivet-reddit-top-50/index.html'));
+  res.sendFile(path.join(__dirname, '/degivet-reddit-top-50/build', 'index.html'));
 });
 
 // Listen.
